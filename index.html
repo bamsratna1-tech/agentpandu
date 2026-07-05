@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Pandu Raharja | Premium Property Agent</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class', 
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Montserrat', 'sans-serif'],
+                        serif: ['Cormorant Garamond', 'serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#FDFBF7',  // Soft Pearl White
+                            100: '#F4F1EA', // Warm Cream
+                            200: '#E8E2D2', // Muted Champagne
+                            300: '#D4AF37', // Elegant Gold
+                            500: '#2C3E50', // Professional Navy Blue
+                            600: '#B59530', // Darker Gold
+                            700: '#1A252F', // Deep Navy
+                            800: '#121A21', // Dark Slate
+                            900: '#0B0F14', // Midnight
+                        }
+                    },
+                    backgroundImage: {
+                        // Pattern kotak-kotak halus (blueprint/arsitektur)
+                        'elegant-pattern': "url('data:image/svg+xml,%3Csvg width=\"30\" height=\"30\" xmlns=\"http://www.w3.org/2000/svg\"%3E%3Cpath d=\"M30 0H0v30h30V0zm-1 1v28H1V1h28z\" fill=\"%232C3E50\" fill-opacity=\"0.04\" fill-rule=\"evenodd\"/%3E%3C/svg%3E')",
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #0B0F14;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        /* Premium Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #0B0F14; }
+        ::-webkit-scrollbar-thumb { background: #2C3E50; border-radius: 10px; }
+
+        /* Animation */
+        @keyframes swing-in {
+            0% { opacity: 0; transform: translateY(40px) scale(0.95); }
+            100% { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        .product-card { opacity: 0; will-change: transform, opacity; }
+        .swing-active { animation: swing-in 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; }
+
+        .delay-100 { animation-delay: 100ms; }
+        .delay-200 { animation-delay: 200ms; }
+
+        .glass-panel { backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); }
+        
+        .theme-transition { transition: background-color 0.5s ease, color 0.5s ease, border-color 0.5s ease; }
+    </style>
+</head>
+<body class="antialiased selection:bg-brand-500 selection:text-white theme-transition">
+
+    <!-- Wrapper utama: Gradien Warm Cream (Light) & Deep Navy (Dark) -->
+    <div class="max-w-md md:max-w-2xl mx-auto min-h-screen relative pb-24 overflow-hidden border-x shadow-2xl theme-transition
+                bg-gradient-to-br from-[#FDFBF7] via-[#F4F1EA] to-[#E8E2D2] border-brand-200/40
+                dark:from-[#1A252F] dark:via-[#121A21] dark:to-[#0B0F14] dark:border-brand-500/20">
+        
+        <!-- Subtle Blueprint Pattern Overlay -->
+        <div class="absolute inset-0 bg-elegant-pattern opacity-100 dark:opacity-30 pointer-events-none mix-blend-multiply dark:mix-blend-screen"></div>
+
+        <!-- Decorative Background Gradient Highlights -->
+        <div class="absolute top-0 left-0 w-full h-[500px] bg-gradient-to-b from-white/70 to-transparent dark:from-brand-500/10 pointer-events-none"></div>
+
+        <!-- Theme Toggle Button -->
+        <button id="theme-toggle" class="absolute top-6 right-6 z-50 w-10 h-10 rounded-full flex items-center justify-center 
+                       bg-white/70 dark:bg-black/40 backdrop-blur-md border border-white/80 dark:border-brand-500/40
+                       text-brand-500 dark:text-brand-300 shadow-xl hover:scale-110 transition-transform duration-300">
+            <i id="theme-icon" class="fas fa-moon text-sm"></i>
+        </button>
+
+        <!-- Header / Profile Section -->
+        <header class="pt-16 pb-10 text-center px-6 relative z-10">
+            <div class="inline-block relative group cursor-pointer">
+                <!-- Profile Image with Glow -->
+                <div class="absolute inset-0 bg-brand-300 rounded-full blur-xl opacity-30 group-hover:opacity-60 transition-opacity duration-500 dark:opacity-20"></div>
+                <div class="w-32 h-32 mx-auto rounded-full p-1 bg-gradient-to-tr from-brand-700 via-brand-500 to-brand-300 shadow-2xl relative z-10">
+                    <img src="aset/pandu.JPG" 
+                         alt="Pandu Raharja" 
+                         class="w-full h-full object-cover rounded-full border-[3px] border-brand-50 dark:border-brand-900 object-top">
+                </div>
+                <!-- Premium Badge -->
+                <div class="absolute -bottom-3 left-1/2 -translate-x-1/2 bg-brand-500 dark:bg-brand-200 text-white dark:text-brand-900 text-[10px] font-bold px-4 py-1.5 rounded-full border border-brand-300/50 shadow-xl whitespace-nowrap z-20 flex items-center gap-1.5 uppercase tracking-widest theme-transition">
+                    <i class="fas fa-medal text-brand-300 dark:text-brand-700"></i> Top Agent
+                </div>
+            </div>
+            
+            <h1 class="font-serif text-3xl sm:text-4xl font-bold text-brand-900 dark:text-brand-50 mt-8 tracking-tight theme-transition drop-shadow-sm">Pandu Raharja</h1>
+            <p class="text-brand-500 dark:text-brand-300 font-semibold text-xs mt-2 tracking-[0.2em] uppercase theme-transition">Senior Property Consultant</p>
+            
+            <div class="glass-panel mt-7 p-5 rounded-2xl shadow-lg mx-4 
+                        bg-white/60 border border-white/70 
+                        dark:bg-black/40 dark:border-brand-500/20 theme-transition">
+                <p class="text-[13px] text-brand-800 dark:text-brand-100/90 leading-relaxed font-medium theme-transition">
+                    Membantu Anda menemukan hunian impian dan investasi properti terbaik di <span class="font-bold text-brand-500 dark:text-brand-300">Jakarta</span>. Spesialis residensial mewah dan properti komersial.
+                </p>
+            </div>
+            
+            <div class="flex justify-center gap-8 mt-7">
+                <div class="flex flex-col items-center">
+                    <span class="text-xl font-serif font-bold text-brand-900 dark:text-brand-50 theme-transition">120+</span>
+                    <span class="text-[10px] uppercase tracking-wider text-brand-500 dark:text-brand-300/90 font-bold theme-transition">Terjual</span>
+                </div>
+                <div class="w-px h-10 bg-brand-500/20 dark:bg-brand-500/40 theme-transition"></div>
+                <div class="flex flex-col items-center">
+                    <span class="text-xl font-serif font-bold text-brand-900 dark:text-brand-50 flex items-center gap-1 theme-transition">5.0 <i class="fas fa-star text-brand-300 text-sm"></i></span>
+                    <span class="text-[10px] uppercase tracking-wider text-brand-500 dark:text-brand-300/90 font-bold theme-transition">Rating</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Product Etalase Section -->
+        <main class="px-5 py-4 relative z-10">
+            <div class="flex items-center justify-between mb-8 px-2 border-b border-brand-500/20 dark:border-brand-500/30 pb-4 theme-transition">
+                <h2 class="font-serif text-xl font-bold text-brand-900 dark:text-brand-50 theme-transition tracking-wide"><i class="fas fa-home text-brand-300 text-lg mr-2"></i>Listing Eksklusif</h2>
+                <div class="flex items-center gap-2 bg-brand-500/10 dark:bg-brand-500/20 px-3 py-1 rounded-full border border-brand-500/20">
+                    <span class="w-2 h-2 rounded-full bg-brand-300 animate-pulse"></span>
+                    <span class="text-[10px] font-bold tracking-widest uppercase text-brand-900 dark:text-brand-200">10 Properti</span>
+                </div>
+            </div>
+
+            <!-- Grid 2x2 Container -->
+            <div class="grid grid-cols-2 gap-4 sm:gap-6">
+
+                <!-- Listing 1 -->
+                <div class="product-card delay-100 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-500 overflow-hidden flex flex-col group border bg-white/90 border-white/80 dark:bg-brand-800/90 dark:border-brand-500/20 backdrop-blur-md theme-transition">
+                    <div class="relative aspect-[4/3] overflow-hidden bg-brand-200/50 dark:bg-black/40 theme-transition">
+                        <img loading="lazy" src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=500&auto=format&fit=crop" alt="Rumah Kemang" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute top-2 left-2 bg-brand-900/90 backdrop-blur-md px-2 py-1 rounded text-[8px] font-bold tracking-widest text-brand-300 shadow-lg z-20">SECOND</div>
+                        <div class="absolute bottom-2 right-2 bg-black/60 backdrop-blur-sm px-2 py-1 rounded text-[8px] text-white z-20 flex items-center gap-1"><i class="fas fa-map-marker-alt text-brand-300"></i> Kemang, Jaksel</div>
+                    </div>
+                    <div class="p-4 flex flex-col flex-grow z-20 relative bg-white dark:bg-brand-900 theme-transition border-t border-brand-100 dark:border-brand-800">
+                        <h3 class="text-[12px] sm:text-[13px] font-bold text-brand-900 dark:text-brand-50 line-clamp-2 leading-snug font-sans theme-transition">Rumah Minimalis Modern Kemang</h3>
+                        
+                        <div class="flex justify-between items-center mt-2 mb-3 text-[10px] text-brand-500 dark:text-brand-300 font-medium">
+                            <span title="Kamar Tidur"><i class="fas fa-bed"></i> 4</span>
+                            <span title="Kamar Mandi"><i class="fas fa-bath"></i> 3</span>
+                            <span title="Luas Bangunan"><i class="fas fa-vector-square"></i> 150m²</span>
+                        </div>
+
+                        <div class="mt-auto mb-3 flex flex-col">
+                            <span class="text-[8px] uppercase tracking-widest text-brand-700/80 dark:text-brand-300/70 mb-0.5 font-medium">Harga Penawaran</span>
+                            <span class="text-brand-500 dark:text-brand-300 font-extrabold text-[13px] sm:text-sm tracking-wide theme-transition">Rp 4.5 Milyar</span>
+                        </div>
+                        <a href="https://wa.me/6281234567890?text=Halo%20Pak%20Pandu,%20saya%20tertarik%20dengan%20listing%20Rumah%20Minimalis%20Kemang." target="_blank" class="w-full text-[10px] tracking-widest uppercase py-2.5 rounded-lg font-bold transition-all flex items-center justify-center gap-2 bg-brand-500 text-white hover:bg-brand-700 dark:bg-brand-300 dark:text-brand-900 dark:hover:bg-brand-200 theme-transition shadow-md">
+                            Tanya Agent <i class="fab fa-whatsapp text-[12px]"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Listing 2 -->
+                <div class="product-card delay-200 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-500 overflow-hidden flex flex-col group border bg-white/90 border-white/80 dark:bg-brand-800/90 dark:border-brand-500/20 backdrop-blur-md theme-transition">
+                    <div class="relative aspect-[4/3] overflow-hidden bg-brand-200/50 dark:bg-black/40 theme-transition">
+                        <img loading="lazy" src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=500&auto=format&fit=crop" alt="Townhouse Senopati" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute top-2 left-2 bg-emerald-600/90 backdrop-blur-md px-2 py-1 rounded text-[8px] font-bold tracking-widest text-white shadow-lg z-20">BARU</div>
+                        <div class="absolute bottom-2 right-2 bg-black/60 backdrop-blur-sm px-2 py-1 rounded text-[8px] text-white z-20 flex items-center gap-1"><i class="fas fa-map-marker-alt text-brand-300"></i> Senopati, Jaksel</div>
+                    </div>
+                    <div class="p-4 flex flex-col flex-grow z-20 relative bg-white dark:bg-brand-900 theme-transition border-t border-brand-100 dark:border-brand-800">
+                        <h3 class="text-[12px] sm:text-[13px] font-bold text-brand-900 dark:text-brand-50 line-clamp-2 leading-snug font-sans theme-transition">Townhouse Eksklusif Senopati</h3>
+                        
+                        <div class="flex justify-between items-center mt-2 mb-3 text-[10px] text-brand-500 dark:text-brand-300 font-medium">
+                            <span title="Kamar Tidur"><i class="fas fa-bed"></i> 3</span>
+                            <span title="Kamar Mandi"><i class="fas fa-bath"></i> 3</span>
+                            <span title="Luas Bangunan"><i class="fas fa-vector-square"></i> 120m²</span>
+                        </div>
+
+                        <div class="mt-auto mb-3 flex flex-col">
+                            <span class="text-[8px] uppercase tracking-widest text-brand-700/80 dark:text-brand-300/70 mb-0.5 font-medium">Harga Penawaran</span>
+                            <span class="text-brand-500 dark:text-brand-300 font-extrabold text-[13px] sm:text-sm tracking-wide theme-transition">Rp 8.2 Milyar</span>
+                        </div>
+                        <a href="https://wa.me/6281234567890?text=Halo%20Pak%20Pandu,%20saya%20tertarik%20dengan%20Townhouse%20Senopati." target="_blank" class="w-full text-[10px] tracking-widest uppercase py-2.5 rounded-lg font-bold transition-all flex items-center justify-center gap-2 bg-brand-500 text-white hover:bg-brand-700 dark:bg-brand-300 dark:text-brand-900 dark:hover:bg-brand-200 theme-transition shadow-md">
+                            Tanya Agent <i class="fab fa-whatsapp text-[12px]"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Listing 3 -->
+                <div class="product-card rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-500 overflow-hidden flex flex-col group border bg-white/90 border-white/80 dark:bg-brand-800/90 dark:border-brand-500/20 backdrop-blur-md theme-transition">
+                    <div class="relative aspect-[4/3] overflow-hidden bg-brand-200/50 dark:bg-black/40 theme-transition">
+                        <img loading="lazy" src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?q=80&w=500&auto=format&fit=crop" alt="Cluster Cibubur" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute top-2 left-2 bg-emerald-600/90 backdrop-blur-md px-2 py-1 rounded text-[8px] font-bold tracking-widest text-white shadow-lg z-20">BARU</div>
+                        <div class="absolute bottom-2 right-2 bg-black/60 backdrop-blur-sm px-2 py-1 rounded text-[8px] text-white z-20 flex items-center gap-1"><i class="fas fa-map-marker-alt text-brand-300"></i> Cibubur, Jaktim</div>
+                    </div>
+                    <div class="p-4 flex flex-col flex-grow z-20 relative bg-white dark:bg-brand-900 theme-transition border-t border-brand-100 dark:border-brand-800">
+                        <h3 class="text-[12px] sm:text-[13px] font-bold text-brand-900 dark:text-brand-50 line-clamp-2 leading-snug font-sans theme-transition">Cluster Asri Nuansa Alam Cibubur</h3>
+                        
+                        <div class="flex justify-between items-center mt-2 mb-3 text-[10px] text-brand-500 dark:text-brand-300 font-medium">
+                            <span title="Kamar Tidur"><i class="fas fa-bed"></i> 3</span>
+                            <span title="Kamar Mandi"><i class="fas fa-bath"></i> 2</span>
+                            <span title="Luas Bangunan"><i class="fas fa-vector-square"></i> 90m²</span>
+                        </div>
+
+                        <div class="mt-auto mb-3 flex flex-col">
+                            <span class="text-[8px] uppercase tracking-widest text-brand-700/80 dark:text-brand-300/70 mb-0.5 font-medium">Harga Penawaran</span>
+                            <span class="text-brand-500 dark:text-brand-300 font-extrabold text-[13px] sm:text-sm tracking-wide theme-transition">Rp 1.8 Milyar</span>
+                        </div>
+                        <a href="https://wa.me/6281234567890?text=Halo%20Pak%20Pandu,%20saya%20tertarik%20dengan%20Cluster%20Cibubur." target="_blank" class="w-full text-[10px] tracking-widest uppercase py-2.5 rounded-lg font-bold transition-all flex items-center justify-center gap-2 bg-brand-500 text-white hover:bg-brand-700 dark:bg-brand-300 dark:text-brand-900 dark:hover:bg-brand-200 theme-transition shadow-md">
+                            Tanya Agent <i class="fab fa-whatsapp text-[12px]"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Listing 4 -->
+                <div class="product-card rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-500 overflow-hidden flex flex-col group border bg-white/90 border-white/80 dark:bg-brand-800/90 dark:border-brand-500/20 backdrop-blur-md theme-transition">
+                    <div class="relative aspect-[4/3] overflow-hidden bg-brand-200/50 dark:bg-black/40 theme-transition">
+                        <img loading="lazy" src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=500&auto=format&fit=crop" alt="Rumah Menteng" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute top-2 left-2 bg-brand-300/90 backdrop-blur-md px-2 py-1 rounded text-[8px] font-bold tracking-widest text-brand-900 shadow-lg z-20">PREMIUM</div>
+                        <div class="absolute bottom-2 right-2 bg-black/60 backdrop-blur-sm px-2 py-1 rounded text-[8px] text-white z-20 flex items-center gap-1"><i class="fas fa-map-marker-alt text-brand-300"></i> Menteng, Jakpus</div>
+                    </div>
+                    <div class="p-4 flex flex-col flex-grow z-20 relative bg-white dark:bg-brand-900 theme-transition border-t border-brand-100 dark:border-brand-800">
+                        <h3 class="text-[12px] sm:text-[13px] font-bold text-brand-900 dark:text-brand-50 line-clamp-2 leading-snug font-sans theme-transition">Rumah Mewah Klasik Menteng</h3>
+                        
+                        <div class="flex justify-between items-center mt-2 mb-3 text-[10px] text-brand-500 dark:text-brand-300 font-medium">
+                            <span title="Kamar Tidur"><i class="fas fa-bed"></i> 5</span>
+                            <span title="Kamar Mandi"><i class="fas fa-bath"></i> 4</span>
+                            <span title="Luas Bangunan"><i class="fas fa-vector-square"></i> 400m²</span>
+                        </div>
+
+                        <div class="mt-auto mb-3 flex flex-col">
+                            <span class="text-[8px] uppercase tracking-widest text-brand-700/80 dark:text-brand-300/70 mb-0.5 font-medium">Harga Penawaran</span>
+                            <span class="text-brand-500 dark:text-brand-300 font-extrabold text-[13px] sm:text-sm tracking-wide theme-transition">Rp 25 Milyar</span>
+                        </div>
+                        <a href="https://wa.me/6281234567890?text=Halo%20Pak%20Pandu,%20saya%20tertarik%20dengan%20Rumah%20Menteng." target="_blank" class="w-full text-[10px] tracking-widest uppercase py-2.5 rounded-lg font-bold transition-all flex items-center justify-center gap-2 bg-brand-500 text-white hover:bg-brand-700 dark:bg-brand-300 dark:text-brand-900 dark:hover:bg-brand-200 theme-transition shadow-md">
+                            Tanya Agent <i class="fab fa-whatsapp text-[12px]"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Listing 5 -->
+                <div class="product-card rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-500 overflow-hidden flex flex-col group border bg-white/90 border-white/80 dark:bg-brand-800/90 dark:border-brand-500/20 backdrop-blur-md theme-transition">
+                    <div class="relative aspect-[4/3] overflow-hidden bg-brand-200/50 dark:bg-black/40 theme-transition">
+                        <img loading="lazy" src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?q=80&w=500&auto=format&fit=crop" alt="Apartemen SCBD" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute top-2 left-2 bg-emerald-600/90 backdrop-blur-md px-2 py-1 rounded text-[8px] font-bold tracking-widest text-white shadow-lg z-20">BARU</div>
+                        <div class="absolute bottom-2 right-2 bg-black/60 backdrop-blur-sm px-2 py-1 rounded text-[8px] text-white z-20 flex items-center gap-1"><i class="fas fa-map-marker-alt text-brand-300"></i> SCBD, Jaksel</div>
+                    </div>
+                    <div class="p-4 flex flex-col flex-grow z-20 relative bg-white dark:bg-brand-900 theme-transition border-t border-brand-100 dark:border-brand-800">
+                        <h3 class="text-[12px] sm:text-[13px] font-bold text-brand-900 dark:text-brand-50 line-clamp-2 leading-snug font-sans theme-transition">Apartemen High-End SCBD Suite</h3>
+                        
+                        <div class="flex justify-between items-center mt-2 mb-3 text-[10px] text-brand-500 dark:text-brand-300 font-medium">
+                            <span title="Kamar Tidur"><i class="fas fa-bed"></i> 2</span>
+                            <span title="Kamar Mandi"><i class="fas fa-bath"></i> 2</span>
+                            <span title="Luas Bangunan"><i class="fas fa-vector-square"></i> 85m²</span>
+                        </div>
+
+                        <div class="mt-auto mb-3 flex flex-col">
+                            <span class="text-[8px] uppercase tracking-widest text-brand-700/80 dark:text-brand-300/70 mb-0.5 font-medium">Harga Penawaran</span>
+                            <span class="text-brand-500 dark:text-brand-300 font-extrabold text-[13px] sm:text-sm tracking-wide theme-transition">Rp 5.5 Milyar</span>
+                        </div>
+                        <a href="https://wa.me/6281234567890?text=Halo%20Pak%20Pandu,%20saya%20tertarik%20dengan%20Apartemen%20SCBD." target="_blank" class="w-full text-[10px] tracking-widest uppercase py-2.5 rounded-lg font-bold transition-all flex items-center justify-center gap-2 bg-brand-500 text-white hover:bg-brand-700 dark:bg-brand-300 dark:text-brand-900 dark:hover:bg-brand-200 theme-transition shadow-md">
+                            Tanya Agent <i class="fab fa-whatsapp text-[12px]"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Listing 6 -->
+                <div class="product-card rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-500 overflow-hidden flex flex-col group border bg-white/90 border-white/80 dark:bg-brand-800/90 dark:border-brand-500/20 backdrop-blur-md theme-transition">
+                    <div class="relative aspect-[4/3] overflow-hidden bg-brand-200/50 dark:bg-black/40 theme-transition">
+                        <img loading="lazy" src="https://images.unsplash.com/photo-1513584684374-8bab748fbf90?q=80&w=500&auto=format&fit=crop" alt="Rumah Kelapa Gading" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute top-2 left-2 bg-brand-900/90 backdrop-blur-md px-2 py-1 rounded text-[8px] font-bold tracking-widest text-brand-300 shadow-lg z-20">SECOND</div>
+                        <div class="absolute bottom-2 right-2 bg-black/60 backdrop-blur-sm px-2 py-1 rounded text-[8px] text-white z-20 flex items-center gap-1"><i class="fas fa-map-marker-alt text-brand-300"></i> Kelapa Gading, Jakut</div>
+                    </div>
+                    <div class="p-4 flex flex-col flex-grow z-20 relative bg-white dark:bg-brand-900 theme-transition border-t border-brand-100 dark:border-brand-800">
+                        <h3 class="text-[12px] sm:text-[13px] font-bold text-brand-900 dark:text-brand-50 line-clamp-2 leading-snug font-sans theme-transition">Rumah Keluarga Nyaman Kelapa Gading</h3>
+                        
+                        <div class="flex justify-between items-center mt-2 mb-3 text-[10px] text-brand-500 dark:text-brand-300 font-medium">
+                            <span title="Kamar Tidur"><i class="fas fa-bed"></i> 4</span>
+                            <span title="Kamar Mandi"><i class="fas fa-bath"></i> 3</span>
+                            <span title="Luas Bangunan"><i class="fas fa-vector-square"></i> 160m²</span>
+                        </div>
+
+                        <div class="mt-auto mb-3 flex flex-col">
+                            <span class="text-[8px] uppercase tracking-widest text-brand-700/80 dark:text-brand-300/70 mb-0.5 font-medium">Harga Penawaran</span>
+                            <span class="text-brand-500 dark:text-brand-300 font-extrabold text-[13px] sm:text-sm tracking-wide theme-transition">Rp 3.2 Milyar</span>
+                        </div>
+                        <a href="https://wa.me/6281234567890?text=Halo%20Pak%20Pandu,%20saya%20tertarik%20dengan%20Rumah%20Kelapa%20Gading." target="_blank" class="w-full text-[10px] tracking-widest uppercase py-2.5 rounded-lg font-bold transition-all flex items-center justify-center gap-2 bg-brand-500 text-white hover:bg-brand-700 dark:bg-brand-300 dark:text-brand-900 dark:hover:bg-brand-200 theme-transition shadow-md">
+                            Tanya Agent <i class="fab fa-whatsapp text-[12px]"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Listing 7 -->
+                <div class="product-card rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-500 overflow-hidden flex flex-col group border bg-white/90 border-white/80 dark:bg-brand-800/90 dark:border-brand-500/20 backdrop-blur-md theme-transition">
+                    <div class="relative aspect-[4/3] overflow-hidden bg-brand-200/50 dark:bg-black/40 theme-transition">
+                        <img loading="lazy" src="https://i.pinimg.com/1200x/1b/78/fa/1b78fadec746282e0c3e4dd4ffeac35e.jpg" alt="Cluster PIK" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute top-2 left-2 bg-emerald-600/90 backdrop-blur-md px-2 py-1 rounded text-[8px] font-bold tracking-widest text-white shadow-lg z-20">BARU</div>
+                        <div class="absolute bottom-2 right-2 bg-black/60 backdrop-blur-sm px-2 py-1 rounded text-[8px] text-white z-20 flex items-center gap-1"><i class="fas fa-map-marker-alt text-brand-300"></i> PIK, Jakut</div>
+                    </div>
+                    <div class="p-4 flex flex-col flex-grow z-20 relative bg-white dark:bg-brand-900 theme-transition border-t border-brand-100 dark:border-brand-800">
+                        <h3 class="text-[12px] sm:text-[13px] font-bold text-brand-900 dark:text-brand-50 line-clamp-2 leading-snug font-sans theme-transition">Cluster Skandinavia Modern PIK 2</h3>
+                        
+                        <div class="flex justify-between items-center mt-2 mb-3 text-[10px] text-brand-500 dark:text-brand-300 font-medium">
+                            <span title="Kamar Tidur"><i class="fas fa-bed"></i> 4</span>
+                            <span title="Kamar Mandi"><i class="fas fa-bath"></i> 3</span>
+                            <span title="Luas Bangunan"><i class="fas fa-vector-square"></i> 200m²</span>
+                        </div>
+
+                        <div class="mt-auto mb-3 flex flex-col">
+                            <span class="text-[8px] uppercase tracking-widest text-brand-700/80 dark:text-brand-300/70 mb-0.5 font-medium">Harga Penawaran</span>
+                            <span class="text-brand-500 dark:text-brand-300 font-extrabold text-[13px] sm:text-sm tracking-wide theme-transition">Rp 4.1 Milyar</span>
+                        </div>
+                        <a href="https://wa.me/6281234567890?text=Halo%20Pak%20Pandu,%20saya%20tertarik%20dengan%20Cluster%20PIK." target="_blank" class="w-full text-[10px] tracking-widest uppercase py-2.5 rounded-lg font-bold transition-all flex items-center justify-center gap-2 bg-brand-500 text-white hover:bg-brand-700 dark:bg-brand-300 dark:text-brand-900 dark:hover:bg-brand-200 theme-transition shadow-md">
+                            Tanya Agent <i class="fab fa-whatsapp text-[12px]"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Listing 8 -->
+                <div class="product-card rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-500 overflow-hidden flex flex-col group border bg-white/90 border-white/80 dark:bg-brand-800/90 dark:border-brand-500/20 backdrop-blur-md theme-transition">
+                    <div class="relative aspect-[4/3] overflow-hidden bg-brand-200/50 dark:bg-black/40 theme-transition">
+                        <img loading="lazy" src="https://i.pinimg.com/736x/6e/5e/5d/6e5e5d2a676a699e5800ebc4cc7193f7.jpg" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute top-2 left-2 bg-brand-900/90 backdrop-blur-md px-2 py-1 rounded text-[8px] font-bold tracking-widest text-brand-300 shadow-lg z-20">SECOND</div>
+                        <div class="absolute bottom-2 right-2 bg-black/60 backdrop-blur-sm px-2 py-1 rounded text-[8px] text-white z-20 flex items-center gap-1"><i class="fas fa-map-marker-alt text-brand-300"></i> Tebet, Jaksel</div>
+                    </div>
+                    <div class="p-4 flex flex-col flex-grow z-20 relative bg-white dark:bg-brand-900 theme-transition border-t border-brand-100 dark:border-brand-800">
+                        <h3 class="text-[12px] sm:text-[13px] font-bold text-brand-900 dark:text-brand-50 line-clamp-2 leading-snug font-sans theme-transition">Rumah Strategis Siap Huni Tebet</h3>
+                        
+                        <div class="flex justify-between items-center mt-2 mb-3 text-[10px] text-brand-500 dark:text-brand-300 font-medium">
+                            <span title="Kamar Tidur"><i class="fas fa-bed"></i> 3</span>
+                            <span title="Kamar Mandi"><i class="fas fa-bath"></i> 2</span>
+                            <span title="Luas Bangunan"><i class="fas fa-vector-square"></i> 110m²</span>
+                        </div>
+
+                        <div class="mt-auto mb-3 flex flex-col">
+                            <span class="text-[8px] uppercase tracking-widest text-brand-700/80 dark:text-brand-300/70 mb-0.5 font-medium">Harga Penawaran</span>
+                            <span class="text-brand-500 dark:text-brand-300 font-extrabold text-[13px] sm:text-sm tracking-wide theme-transition">Rp 2.9 Milyar</span>
+                        </div>
+                        <a href="https://wa.me/6281234567890?text=Halo%20Pak%20Pandu,%20saya%20tertarik%20dengan%20Rumah%20Tebet." target="_blank" class="w-full text-[10px] tracking-widest uppercase py-2.5 rounded-lg font-bold transition-all flex items-center justify-center gap-2 bg-brand-500 text-white hover:bg-brand-700 dark:bg-brand-300 dark:text-brand-900 dark:hover:bg-brand-200 theme-transition shadow-md">
+                            Tanya Agent <i class="fab fa-whatsapp text-[12px]"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Listing 9 -->
+                <div class="product-card rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-500 overflow-hidden flex flex-col group border bg-white/90 border-white/80 dark:bg-brand-800/90 dark:border-brand-500/20 backdrop-blur-md theme-transition">
+                    <div class="relative aspect-[4/3] overflow-hidden bg-brand-200/50 dark:bg-black/40 theme-transition">
+                        <img loading="lazy" src="https://images.unsplash.com/photo-1598228723793-52759bba239c?q=80&w=500&auto=format&fit=crop" alt="Townhouse Puri Indah" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute top-2 left-2 bg-emerald-600/90 backdrop-blur-md px-2 py-1 rounded text-[8px] font-bold tracking-widest text-white shadow-lg z-20">BARU</div>
+                        <div class="absolute bottom-2 right-2 bg-black/60 backdrop-blur-sm px-2 py-1 rounded text-[8px] text-white z-20 flex items-center gap-1"><i class="fas fa-map-marker-alt text-brand-300"></i> Puri Indah, Jakbar</div>
+                    </div>
+                    <div class="p-4 flex flex-col flex-grow z-20 relative bg-white dark:bg-brand-900 theme-transition border-t border-brand-100 dark:border-brand-800">
+                        <h3 class="text-[12px] sm:text-[13px] font-bold text-brand-900 dark:text-brand-50 line-clamp-2 leading-snug font-sans theme-transition">Townhouse Modern Puri Indah</h3>
+                        
+                        <div class="flex justify-between items-center mt-2 mb-3 text-[10px] text-brand-500 dark:text-brand-300 font-medium">
+                            <span title="Kamar Tidur"><i class="fas fa-bed"></i> 4</span>
+                            <span title="Kamar Mandi"><i class="fas fa-bath"></i> 3</span>
+                            <span title="Luas Bangunan"><i class="fas fa-vector-square"></i> 145m²</span>
+                        </div>
+
+                        <div class="mt-auto mb-3 flex flex-col">
+                            <span class="text-[8px] uppercase tracking-widest text-brand-700/80 dark:text-brand-300/70 mb-0.5 font-medium">Harga Penawaran</span>
+                            <span class="text-brand-500 dark:text-brand-300 font-extrabold text-[13px] sm:text-sm tracking-wide theme-transition">Rp 3.8 Milyar</span>
+                        </div>
+                        <a href="https://wa.me/6281234567890?text=Halo%20Pak%20Pandu,%20saya%20tertarik%20dengan%20Townhouse%20Puri%20Indah." target="_blank" class="w-full text-[10px] tracking-widest uppercase py-2.5 rounded-lg font-bold transition-all flex items-center justify-center gap-2 bg-brand-500 text-white hover:bg-brand-700 dark:bg-brand-300 dark:text-brand-900 dark:hover:bg-brand-200 theme-transition shadow-md">
+                            Tanya Agent <i class="fab fa-whatsapp text-[12px]"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Listing 10 -->
+                <div class="product-card rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-500 overflow-hidden flex flex-col group border bg-white/90 border-white/80 dark:bg-brand-800/90 dark:border-brand-500/20 backdrop-blur-md theme-transition">
+                    <div class="relative aspect-[4/3] overflow-hidden bg-brand-200/50 dark:bg-black/40 theme-transition">
+                        <img loading="lazy" src="https://images.unsplash.com/photo-1613977257363-707ba9348227?q=80&w=500&auto=format&fit=crop" alt="Rumah Pondok Indah" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute top-2 left-2 bg-brand-300/90 backdrop-blur-md px-2 py-1 rounded text-[8px] font-bold tracking-widest text-brand-900 shadow-lg z-20">PREMIUM</div>
+                        <div class="absolute bottom-2 right-2 bg-black/60 backdrop-blur-sm px-2 py-1 rounded text-[8px] text-white z-20 flex items-center gap-1"><i class="fas fa-map-marker-alt text-brand-300"></i> Pondok Indah, Jaksel</div>
+                    </div>
+                    <div class="p-4 flex flex-col flex-grow z-20 relative bg-white dark:bg-brand-900 theme-transition border-t border-brand-100 dark:border-brand-800">
+                        <h3 class="text-[12px] sm:text-[13px] font-bold text-brand-900 dark:text-brand-50 line-clamp-2 leading-snug font-sans theme-transition">Rumah Mewah Hook Pondok Indah</h3>
+                        
+                        <div class="flex justify-between items-center mt-2 mb-3 text-[10px] text-brand-500 dark:text-brand-300 font-medium">
+                            <span title="Kamar Tidur"><i class="fas fa-bed"></i> 6</span>
+                            <span title="Kamar Mandi"><i class="fas fa-bath"></i> 5</span>
+                            <span title="Luas Bangunan"><i class="fas fa-vector-square"></i> 600m²</span>
+                        </div>
+
+                        <div class="mt-auto mb-3 flex flex-col">
+                            <span class="text-[8px] uppercase tracking-widest text-brand-700/80 dark:text-brand-300/70 mb-0.5 font-medium">Harga Penawaran</span>
+                            <span class="text-brand-500 dark:text-brand-300 font-extrabold text-[13px] sm:text-sm tracking-wide theme-transition">Rp 35 Milyar</span>
+                        </div>
+                        <a href="https://wa.me/6281234567890?text=Halo%20Pak%20Pandu,%20saya%20tertarik%20dengan%20Rumah%20Pondok%20Indah." target="_blank" class="w-full text-[10px] tracking-widest uppercase py-2.5 rounded-lg font-bold transition-all flex items-center justify-center gap-2 bg-brand-500 text-white hover:bg-brand-700 dark:bg-brand-300 dark:text-brand-900 dark:hover:bg-brand-200 theme-transition shadow-md">
+                            Tanya Agent <i class="fab fa-whatsapp text-[12px]"></i>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="mt-14 py-16 px-6 mx-4 rounded-3xl mb-6 relative overflow-hidden theme-transition shadow-2xl
+                       bg-brand-900 dark:bg-[#070A0D] text-brand-100 border-t border-brand-500/30">
+            
+            <div class="absolute -top-20 -right-20 w-64 h-64 border border-brand-300/10 rounded-full"></div>
+            <div class="absolute -bottom-20 -left-20 w-48 h-48 border border-brand-300/10 rounded-full"></div>
+            
+            <div class="text-center max-w-sm mx-auto relative z-10">
+                <div class="w-16 h-16 mx-auto bg-brand-800/80 dark:bg-brand-900/80 rounded-full flex items-center justify-center mb-5 border border-brand-300/30 shadow-lg">
+                    <i class="fas fa-building text-brand-300 text-2xl"></i>
+                </div>
+                <h2 class="font-serif text-2xl font-bold text-white mb-4 tracking-wide">Pandu Raharja Property</h2>
+                <p class="text-xs text-brand-100/70 dark:text-brand-100/50 mb-8 leading-relaxed font-medium px-4">
+                    Solusi terpercaya untuk kebutuhan jual, beli, dan sewa properti Anda di area Jakarta dan sekitarnya. Privasi dan kepuasan klien adalah prioritas utama kami.
+                </p>
+                <div class="flex justify-center gap-5 mb-10">
+                    <a href="#" class="w-10 h-10 rounded-full bg-brand-800/50 border border-brand-300/30 flex items-center justify-center hover:bg-brand-300 hover:text-brand-900 transition-all duration-300 hover:scale-110 shadow-md">
+                        <i class="fab fa-instagram text-sm"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 rounded-full bg-brand-800/50 border border-brand-300/30 flex items-center justify-center hover:bg-brand-300 hover:text-brand-900 transition-all duration-300 hover:scale-110 shadow-md">
+                        <i class="fab fa-linkedin-in text-sm"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 rounded-full bg-brand-800/50 border border-brand-300/30 flex items-center justify-center hover:bg-brand-300 hover:text-brand-900 transition-all duration-300 hover:scale-110 shadow-md">
+                        <i class="fas fa-globe text-sm"></i>
+                    </a>
+                </div>
+                <div class="border-t border-brand-500/40 pt-8">
+                    <p class="text-[10px] font-bold tracking-widest uppercase text-brand-100/40">
+                        &copy; 2026 Pandu Raharja. Independent Agent.
+                    </p>
+                </div>
+            </div>
+        </footer>
+
+        <!-- Floating WhatsApp Button -->
+        <a href="https://wa.me/6281234567890?text=Halo%20Pak%20Pandu,%20saya%20ingin%20berkonsultasi%20mengenai%20properti." 
+           target="_blank" 
+           rel="noopener noreferrer"
+           class="fixed bottom-6 right-6 lg:right-[calc(50%-20rem)] z-50 group flex items-center gap-3">
+            
+            <div class="hidden sm:block px-4 py-2 bg-brand-900 dark:bg-brand-200 text-xs font-bold tracking-wider text-white dark:text-brand-900 rounded-lg shadow-xl border border-brand-500 dark:border-brand-300 opacity-0 group-hover:opacity-100 transition-all translate-x-4 group-hover:translate-x-0 theme-transition">
+                Konsultasi Properti
+            </div>
+            
+            <div class="relative">
+                <div class="absolute inset-0 bg-[#25D366] rounded-full animate-ping opacity-40"></div>
+                <div class="relative bg-[#25D366] text-white w-14 h-14 rounded-full flex items-center justify-center shadow-[0_8px_30px_rgb(37,211,102,0.4)] hover:scale-110 hover:bg-[#1EBE5D] transition-all duration-300 border-2 border-white/20">
+                    <i class="fab fa-whatsapp text-3xl"></i>
+                </div>
+                <div class="absolute -top-1 -right-1 w-4 h-4 bg-brand-300 border-2 border-white dark:border-[#0B0F14] rounded-full theme-transition shadow-sm"></div>
+            </div>
+        </a>
+
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            
+            const html = document.documentElement;
+            const themeBtn = document.getElementById('theme-toggle');
+            const themeIcon = document.getElementById('theme-icon');
+
+            const savedTheme = localStorage.getItem('theme');
+            const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            
+            let isDark = savedTheme === 'dark' || (!savedTheme && systemPrefersDark);
+
+            function updateTheme(dark) {
+                if (dark) {
+                    html.classList.add('dark');
+                    themeIcon.classList.remove('fa-moon');
+                    themeIcon.classList.add('fa-sun');
+                } else {
+                    html.classList.remove('dark');
+                    themeIcon.classList.remove('fa-sun');
+                    themeIcon.classList.add('fa-moon');
+                }
+                localStorage.setItem('theme', dark ? 'dark' : 'light');
+            }
+
+            updateTheme(isDark);
+
+            themeBtn.addEventListener('click', () => {
+                isDark = !isDark;
+                updateTheme(isDark);
+            });
+
+            // Intersection Observer untuk Animasi Swing Scroll
+            const observerOptions = {
+                root: null,
+                rootMargin: "0px 0px -50px 0px", 
+                threshold: 0.15
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('swing-active');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            const products = document.querySelectorAll('.product-card');
+            products.forEach((product) => {
+                observer.observe(product);
+            });
+            
+        });
+    </script>
+</body>
+</html>
